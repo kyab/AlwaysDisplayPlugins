@@ -11,20 +11,25 @@ Use XCode3.x to build
 Install
 ===========================
 1.At first you need SIMBL installed. SIMBL:http://www.culater.net/software/SIMBL/SIMBL.php
+
 2.copy "AlwaysDisplayPlugins.bundle" to ~/Library/Application Support/SIMBL/Plugins
  If SIMBL/Plugins folder not found, please make the folder(s), then copy "AlwaysDisplayPlugins.bundle"
+
 3.relaunch Ableton Live
 
 UnInstall
 ===========================
 1.Remove ~/Library/Application Support/SIMBL/Plugins/AlwaysDisplayPlugins.bundle
+
 2.relaunch Ableton Live
 
 Requirements
 ===========================
 1.MaxOSX 10.6.x (it would work 10.5.x, but not tested)
+
 2.Ableton Live
-3.SIMBL : 
+
+3.SIMBL : http://www.culater.net/software/SIMBL/SIMBL.php
 
 How it works
 ===========================
