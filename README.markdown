@@ -12,7 +12,7 @@ Install
 ===========================
 1.At first you need SIMBL installed. SIMBL:http://www.culater.net/software/SIMBL/SIMBL.php
 
-2.Copy "AlwaysDisplayPlugins.bundle" to ~/Library/Application Support/SIMBL/Plugins
+2.Copy "AlwaysDisplayPlugins.bundle" to ~/Library/Application Support/SIMBL/Plugins. 
  If SIMBL/Plugins folder is not found, please make the folder(s), then copy "AlwaysDisplayPlugins.bundle"
 
 3.Relaunch Ableton Live

@@ -28,7 +28,7 @@
 		
 		/*
 		  Ableton live create instance of NSCarbonWindow class for some vst/au plugin window. 
-		  so, we should firat find NSCarbonWindow, and remove the "Window Hide On Suspend" attribute
+		  so, we should first find NSCarbonWindow, and remove the "Window Hide On Suspend" attribute
 		  ("suspend" means another application is active)
 		*/
 				
@@ -43,7 +43,7 @@
 				
 				err = HIWindowChangeClass(winRef,    kDocumentWindowClass);
 				if (err != noErr){
-					NSLog(@"failed to change Window class err=%d", err);
+					NSLog(@"failed to change Window class err=%lu", err);
 				}
 				//another experimental. add zoom, resize functional to vst/au windows.
 				{
@@ -51,21 +51,21 @@
 					int setAttr[] = {kHIWindowBitCollapseBox, kHIWindowBitInWindowMenu,kHIWindowBitStandardHandler,0};
 					err = HIWindowChangeAttributes(winRef, setAttr, NULL);
 					if (err != noErr){
-						NSLog(@"AlwaysDisplayPlugins:failed to change attribute [kWindowHideOnSuspendAttribute].err=%d", err);
+						NSLog(@"AlwaysDisplayPlugins:failed to change attribute [kWindowHideOnSuspendAttribute].err=%lu", err);
 					}				
 				}
 				{	//no mean??
 					int removeAttr[] = {35,0};	//kHIWindowBitDoesNotShowBadgeInDock
 					err = HIWindowChangeAttributes(winRef,NULL, removeAttr);
 					if (err != noErr){
-						NSLog(@"failed to remove some attributes from window, err=%d", err);
+						NSLog(@"failed to remove some attributes from window, err=%lu", err);
 					}
 				}
 				
 				int clearAttr[] = {kHIWindowBitHideOnSuspend, 0};
 				err = HIWindowChangeAttributes(winRef, NULL, clearAttr);
 				if (err != noErr){
-					NSLog(@"AlwaysDisplayPlugins:failed to remove [kWindowHideOnSuspendAttribute].err=%d", err);
+					NSLog(@"AlwaysDisplayPlugins:failed to remove [kWindowHideOnSuspendAttribute].err=%lu", err);
 				}else{
 					NSLog(@"AlwaysDisplayPlugins:now plugin window:\"%@\" does not hide on deactivate of Live", [window title]);
 				}
@@ -89,7 +89,7 @@
 
 +(void)load
 {
-	NSLog(@"AlwaysDisplayPlugins: loaded.ww");
+	NSLog(@"AlwaysDisplayPlugins: loaded.");
 	
 	AlwaysDisplayPlugins *thisPlugin = [AlwaysDisplayPlugins sharedInstance];
 	NSTimer *timer = [NSTimer timerWithTimeInterval:1.0f
