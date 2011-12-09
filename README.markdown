@@ -25,7 +25,7 @@ Uninstall
 
 Requirements
 ===========================
-1.MaxOSX 10.6.x (it would work with 10.5.x, but not tested)
+1.MaxOSX 10.7.x (it would work with 10.5.x/10.6.x, but not tested)
 
 2.Ableton Live
 
@@ -35,6 +35,6 @@ How it works
 ===========================
 AlwaysDisplayPlugins will be loaded with Ableton Live, and watching new AU/VST Plugin window for every 3 seconds.
 If new AU/VST plugin window found, change windows attribute to "not hide when deactive".
-So AU/VST plugin windows never hidden even if another application(like safari) is forground.
+So AU/VST plugin windows never hidden even if another application(like safari) becomes forground.
 
 
