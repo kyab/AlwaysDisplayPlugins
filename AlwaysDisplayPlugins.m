@@ -10,7 +10,7 @@
 
 #include <Carbon/Carbon.h>
 #include <MacTypes.h>
-#include <MacWindows.h>
+//#include <MacWindows.h>
 
 @interface NSCarbonWindow : NSWindow
 @end
@@ -35,43 +35,40 @@
 		if ([window isKindOfClass:[NSCarbonWindow class]]){
 			HIWindowRef winRef = [window windowRef];
 			if (HIWindowTestAttribute(winRef, kHIWindowBitHideOnSuspend)){
-				NSLog(@"AlwaysDisplayPlugins:find new plugin window:\"%@\"", [window title]);
+				NSLog(@"AlwaysDisplayPlugins:find new plugin window(Carbon):\"%@\"", [window title]);
 				
 				OSStatus err = noErr;
 				
 				/*experimental change to "normal" window, not "floating" window */
 				
-				err = HIWindowChangeClass(winRef,    kDocumentWindowClass);
-				if (err != noErr){
-					NSLog(@"failed to change Window class err=%lu", err);
-				}
+//				err = HIWindowChangeClass(winRef,    kDocumentWindowClass);
+//				if (err != noErr){
+//					NSLog(@"failed to change Window class err=%d", err);
+//				}
 				//another experimental. add zoom, resize functional to vst/au windows.
-				{
-					
-					int setAttr[] = {kHIWindowBitCollapseBox, kHIWindowBitInWindowMenu,kHIWindowBitStandardHandler,0};
-					err = HIWindowChangeAttributes(winRef, setAttr, NULL);
-					if (err != noErr){
-						NSLog(@"AlwaysDisplayPlugins:failed to change attribute [kWindowHideOnSuspendAttribute].err=%lu", err);
-					}				
-				}
-				{	//no mean??
-					int removeAttr[] = {35,0};	//kHIWindowBitDoesNotShowBadgeInDock
-					err = HIWindowChangeAttributes(winRef,NULL, removeAttr);
-					if (err != noErr){
-						NSLog(@"failed to remove some attributes from window, err=%lu", err);
-					}
-				}
+//				{
+//					
+//					int setAttr[] = {kHIWindowBitCollapseBox, kHIWindowBitInWindowMenu,kHIWindowBitStandardHandler,0};
+//					err = HIWindowChangeAttributes(winRef, setAttr, NULL);
+//					if (err != noErr){
+//						NSLog(@"AlwaysDisplayPlugins:failed to change attribute [kWindowHideOnSuspendAttribute].err=%lu", err);
+//					}				
+//				}
+//				{	//no mean??
+//					int removeAttr[] = {35,0};	//kHIWindowBitDoesNotShowBadgeInDock
+//					err = HIWindowChangeAttributes(winRef,NULL, removeAttr);
+//					if (err != noErr){
+//						NSLog(@"failed to remove some attributes from window, err=%lu", err);
+//					}
+//				}
 				
 				int clearAttr[] = {kHIWindowBitHideOnSuspend, 0};
 				err = HIWindowChangeAttributes(winRef, NULL, clearAttr);
 				if (err != noErr){
-					NSLog(@"AlwaysDisplayPlugins:failed to remove [kWindowHideOnSuspendAttribute].err=%lu", err);
+					NSLog(@"AlwaysDisplayPlugins:failed to remove [kWindowHideOnSuspendAttribute].err=%ld", err);
 				}else{
 					NSLog(@"AlwaysDisplayPlugins:now plugin window:\"%@\" does not hide on deactivate of Live", [window title]);
 				}
-				
-
-								
 			}
 			
 			
@@ -80,8 +77,13 @@
 			 
 			*/
 			if (3 != [window styleMask]){
+                NSLog(@"AlwaysDisplayPlugins:find new plugin window(Panel):\"%@\"", [window title]);
 				[window setStyleMask:3];
 				[window setHidesOnDeactivate:NO];
+                NSArray *children = [window childWindows];
+                for (id child in children){
+                    [child setHidesOnDeactivate:NO];
+                }
 			}
 		}
 	}
